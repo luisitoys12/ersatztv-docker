@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  ersatztv:
+    image: ghcr.io/ersatztv/legacy:latest
+    container_name: ersatztv
+    restart: unless-stopped
+    environment:
+      - TZ=America/Mexico_City
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - "8409:8409"
+    volumes:
+      - ./config:/config
+      - /ruta/a/tus/medios/tv:/tv:ro
+      - /ruta/a/tus/comerciales:/comerciales:ro
+    tmpfs:
+      - /transcode
